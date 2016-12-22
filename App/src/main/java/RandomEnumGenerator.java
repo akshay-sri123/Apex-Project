@@ -15,4 +15,5 @@ public class RandomEnumGenerator<E extends Enum>
 	public E random() {
 		return values[random.nextInt(values.length)];
 	}
+
 }

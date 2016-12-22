@@ -9,6 +9,7 @@ public class Aggregator
 {
 	public static List<AdInfo> adInfoListLocation = new ArrayList<>();
 	public static int adInfoListLocationCount=0;
+	public static double cost=0.0;
 	
 	public void DISPLAY(List<AdInfo> adList)
 	{
@@ -111,6 +112,16 @@ public class Aggregator
 			adInfoListLocationCount++;
 		}
 		System.out.println();
+	}
+	
+	public double MAX_COST(AdInfo adInfo)
+	{
+		if(cost < adInfo.getCost())
+		{
+			cost = adInfo.getCost();
+		}
+		System.out.println();
+		return cost;
 	}
 	
 }
