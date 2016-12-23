@@ -1,4 +1,6 @@
-import java.io.Serializable;
+import com.apex.Advertiser;
+import com.apex.Location;
+import com.apex.Publisher;
 
 /**
  * Created by Akshay on 12/21/2016.
