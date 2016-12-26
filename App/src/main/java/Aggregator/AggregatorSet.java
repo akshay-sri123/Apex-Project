@@ -5,9 +5,6 @@ import com.apex.AdInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by akshay on 23/12/16.
- */
 public class AggregatorSet
 {
 	List<Aggregator> aggregatorList = new ArrayList<>();
@@ -21,11 +18,22 @@ public class AggregatorSet
 	{
 		for(Aggregator aggr : aggregatorList)
 		{
-			Pair<List, List> current = aggr.getGroup(adInfo);
-			System.out.println(current.toString());
-			aggr.COUNT(current.getSecond(), adInfo);
+			aggr.add(adInfo);
 		}
+	}
+
+	List<Aggregator> getAggregatorList()
+	{
+		return aggregatorList;
 	}
 }
 
 
+/*
+Pair{Keys=[4, TWITTER, AL], Values=[4.5, 12, 2]}
+Pair{Keys=[4, TWITTER, AL], Values=[7.5, 15, 3]}
+Pair{Keys=[4, TWITTER, AL], Values=[8.5, 18, 3]}
+
+[4, TWITTER, AL] [13.0, 19, 4]
+
+ */

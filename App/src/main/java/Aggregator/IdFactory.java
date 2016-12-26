@@ -1,9 +1,6 @@
 package Aggregator;
 
-/**
- * Created by akshay on 23/12/16.
- */
-public class idFactory
+public class IdFactory
 {
 	public String[] getKey(int id)
 	{

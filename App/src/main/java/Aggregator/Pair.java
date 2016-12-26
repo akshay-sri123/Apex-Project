@@ -1,8 +1,5 @@
 package Aggregator;
 
-/**
- * Created by akshay on 23/12/16.
- */
 public class Pair<A, B>
 {
 	private A first;

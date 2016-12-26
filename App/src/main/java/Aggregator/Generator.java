@@ -4,9 +4,6 @@ import com.apex.*;
 
 import java.util.List;
 
-/**
- * Created by akshay on 23/12/16.
- */
 public class Generator
 {
 	private static RandomEnumGenerator<Publisher> randomPublisher = new RandomEnumGenerator<Publisher>(Publisher.class);
