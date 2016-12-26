@@ -7,9 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by akshay on 23/12/16.
- */
 public class Aggregator_v2
 {
 	private final int id;
@@ -18,6 +15,7 @@ public class Aggregator_v2
 	
 	public Aggregator_v2(int id) {
 		this.id = id;
+
 	}
 	
 	public Pair<List, List> getGroup(AdInfo adInfo)
