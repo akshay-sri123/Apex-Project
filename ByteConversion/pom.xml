@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>groupId</groupId>
-    <artifactId>App</artifactId>
+    <artifactId>ByteConversion</artifactId>
     <version>1.0-SNAPSHOT</version>
+
 
     <build>
         <plugins>
@@ -22,13 +23,4 @@
         </plugins>
     </build>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-
-    </dependencies>
 </project>
