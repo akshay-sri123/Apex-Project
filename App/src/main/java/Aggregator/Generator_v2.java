@@ -1,11 +1,8 @@
 package Aggregator;
 
-import com.apex.AdInfo;
-import com.apex.Advertiser;
-import com.apex.Location;
-import com.apex.Publisher;
-import com.apex.RandomEnumGenerator;
-import com.apex.RandomValueGenerator;
+import com.apex.*;
+
+import java.io.IOException;
 
 public class Generator_v2
 {
@@ -14,7 +11,7 @@ public class Generator_v2
 	private static RandomEnumGenerator<Location> randomLocation = new RandomEnumGenerator<Location>(Location.class);
 	private static RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
 	
-	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException {
 		AggregatorSet aggregatorSet = new AggregatorSet();
 		Converter converter = new Converter(1);
 //		for (int i = 1; i <= 7; i++) {

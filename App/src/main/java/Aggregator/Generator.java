@@ -2,8 +2,6 @@ package Aggregator;
 
 import com.apex.*;
 
-import java.util.List;
-
 public class Generator
 {
 	private static RandomEnumGenerator<Publisher> randomPublisher = new RandomEnumGenerator<Publisher>(Publisher.class);
