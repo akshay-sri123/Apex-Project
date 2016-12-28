@@ -14,5 +14,5 @@ public enum Advertiser
 	SAN_DEIGO_ZOO,
 	TOMTINA,
 	JACK_IN_THE_BOX,
-	PANDAS
+	PANDAS,
 }
