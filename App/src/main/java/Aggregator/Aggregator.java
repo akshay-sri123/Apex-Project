@@ -9,10 +9,8 @@ import java.util.Map;
 
 public class Aggregator
 {
-	protected int byteLen = 0, offset = 0, varoffset = 0;
 	Converter converter=new Converter();
-	protected  byte[] byteKeys;
-	protected  byte[] byteMetrics;
+
 	protected final String[] keys;
 	protected final String[] metrics;
 	private final int id;
@@ -86,86 +84,10 @@ public class Aggregator
     return key;
   }
   
-  public byte[] getKeyBytes(int id, AdInfo adInfo)
-  {
-    byteKeys = new byte[getRequiredLengthForKeys(1, adInfo)];
-  	switch (id)
-        {
-		  case 1:
-			  varoffset = 2;
-			  String str = (adInfo.getPublisher()).toString();
-			  int len = str.length();
-			  byteKeys[1]=(byte)len;
-			  byte[] strBytes = str.getBytes();
-			  for (int i = 0; i < len; i++) {
-				  byteKeys[varoffset + i] = strBytes[i];
-			  }
-			  varoffset += len;
-			  break;
-	    }
-    return byteKeys;
-  }
-  
-  public String readString()
-  {
-  	String str="";
-  	int len = (int)byteKeys[1];
-  	for(int i=0;i<len;i++)
-    {
-    	str += (char)byteKeys[1+i];
-    }
-    return str;
-  }
-	
-  /*
-  KEY ID LIST
-  1->Publisher
-  2->Location
-  3->Advertiser
-  4->Publisher, Location
-  5->Advertiser, Location
-  6->Publisher, Advertiser
-  7->Publisher, Advertiser, Location
-   */
 
-  int getRequiredLengthForKeys(int id, AdInfo adInfo)
-  {
-        switch (id)
-        {
-	        case 1:
-		        byteLen = 2;
-	        	byteLen += ((adInfo.getPublisher()).toString()).length();
-	        	break;
-	        case 2:
-		        byteLen = 2;
-		        byteLen += ((adInfo.getLocation()).toString()).length();
-		        break;
-	        case 3:
-		        byteLen = 2;
-		        byteLen += ((adInfo.getAdvertiser()).toString()).length();
-		        break;
-	        case 4:
-		        byteLen = 4;
-		        byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getLocation()).toString()).length();
-		        break;
-	        case 5:
-		        byteLen = 4;
-		        byteLen += ((adInfo.getAdvertiser()).toString()).length() + ((adInfo.getLocation()).toString()).length();
-		        break;
-	        case 6:
-		        byteLen = 4;
-		        byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getAdvertiser()).toString()).length();
-		        break;
-	        case 7:
-		        byteLen = 6;
-		        byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getAdvertiser()).toString()).length() +
-				        ((adInfo.getLocation()).toString()).length();
-		        break;
-        }
-        
-        return byteLen;
-  }
-  
+	
+
+    
 	public void dump()
 	{
 		for (Map.Entry entry : aggMap.entrySet()) {
