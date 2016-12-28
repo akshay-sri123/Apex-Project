@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Aggregator
 {
-	Converter converter=new Converter();
+	//Converter converter=new Converter();
 
 	protected final String[] keys;
 	protected final String[] metrics;

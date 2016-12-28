@@ -7,10 +7,16 @@ import com.apex.AdInfo;
  */
 public class Converter
 {
-	protected int byteLen = 0, offset = 0, varoffset = 0;
+	protected int offset = 0, varoffset = 0, id = 0;
 	protected  byte[] byteKeys;
 	protected  byte[] byteMetrics;
-	  /*
+	
+	public Converter(int id)
+	{
+		this.id = id;
+	}
+	
+	/*
 	  KEY ID LIST
 	  1->Publisher
 	  2->Location
@@ -30,37 +36,42 @@ public class Converter
 		|___________|______________|__________|	    |   |
 	                |______________|________________|   |
 	                               |____________________|
-	   
+	 
+	     
+	     4 bytes - offset
+	     1 bytes - length
+	     variable bytes - string length
 	   */
 	
 	int getRequiredLengthForKeys(int id, AdInfo adInfo) {
+		int byteLen = 0;
 		switch (id) {
 			case 1:
-				byteLen += 8;
+				byteLen += 5;
 				byteLen += ((adInfo.getPublisher()).toString()).length();
 				break;
 			case 2:
-				byteLen = 8;
+				byteLen = 5;
 				byteLen += ((adInfo.getLocation()).toString()).length();
 				break;
 			case 3:
-				byteLen = 8;
+				byteLen = 5;
 				byteLen += ((adInfo.getAdvertiser()).toString()).length();
 				break;
 			case 4:
-				byteLen = 16;
+				byteLen = 10;
 				byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getLocation()).toString()).length();
 				break;
 			case 5:
-				byteLen = 16;
+				byteLen = 10;
 				byteLen += ((adInfo.getAdvertiser()).toString()).length() + ((adInfo.getLocation()).toString()).length();
 				break;
 			case 6:
-				byteLen = 16;
+				byteLen = 10;
 				byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getAdvertiser()).toString()).length();
 				break;
 			case 7:
-				byteLen = 24;
+				byteLen = 15;
 				byteLen += ((adInfo.getPublisher()).toString()).length() + ((adInfo.getAdvertiser()).toString()).length() +
 						((adInfo.getLocation()).toString()).length();
 				break;
@@ -73,80 +84,52 @@ public class Converter
 		switch (id)
 		{
 			case 1:
-				varoffset += 8;
+				varoffset += 5;
 				break;
 			case 2:
-				varoffset += 8;
+				varoffset += 5;
 				break;
 			case 3:
-				varoffset += 8;
+				varoffset += 5;
 				break;
 			case 4:
-				varoffset += 16;
+				varoffset += 10;
 				break;
 			case 5:
-				varoffset += 16;
+				varoffset += 10;
 				break;
 			case 6:
-				varoffset += 16;
+				varoffset += 15;
 				break;
 			case 7:
 				varoffset += 24;
 				break;
 		}
+		return varoffset;
 	}
 	
-	public byte[] getKeyBytes(int id, AdInfo adInfo)
+	public void writeInt(byte[] bytes, int val)
 	{
-		byte[] strBytes = null;
-		byteKeys = new byte[getRequiredLengthForKeys(1, adInfo)];
-		switch (id)
+		bytes[offset+0] = (byte)(val & 0xFF);
+		bytes[offset+1] = (byte)((val & 0xFF00) >> 8);
+		bytes[offset+2] = (byte)((val & 0xFF0000) >> 16);
+		bytes[offset+3] = (byte)((val & 0xFF000000) >> 24);
+	}
+	
+	public void writeString(byte[] bytes, String str)
+	{
+		writeInt(bytes, varoffset);
+		offset+=1;
+		
+		bytes[offset]=(byte)str.length();
+		
+		byte[] strBytes=str.getBytes();
+		
+		for(int i=0;i<strBytes.length;i++)
 		{
-			case 1:
-				varoffset = calcVarOffset(id);
-				String str = (adInfo.getPublisher()).toString();
-				int len = str.length();
-				byteKeys[1]=(byte)len;
-				strBytes = str.getBytes();
-				for (int i = 0; i < len; i++) {
-					byteKeys[varoffset + i] = strBytes[i];
-				}
-				varoffset += len;
-				break;
-			
-			case 2:
-				varoffset = 2;
-				String str = (adInfo.getLocation()).toString();
-				int len = str.length();
-				byteKeys[1]=(byte)len;
-				strBytes = str.getBytes();
-				for (int i = 0; i < len; i++) {
-					byteKeys[varoffset + i] = strBytes[i];
-				}
-				varoffset += len;
-				break;
-			
-			
-			case 3:
-				varoffset = 2;
-				String str = (adInfo.getAdvertiser()).toString();
-				int len = str.length();
-				byteKeys[1]=(byte)len;
-				strBytes = str.getBytes();
-				for (int i = 0; i < len; i++) {
-					byteKeys[varoffset + i] = strBytes[i];
-				}
-				varoffset += len;
-				break;
-			
-			case 4:
-				varoffset = 4;
-				break;
-			
-			
-			
+			bytes[i + varoffset] = strBytes[i];
 		}
-		return byteKeys;
+		varoffset += strBytes.length;
 	}
 	
 	public String readString()
@@ -159,6 +142,37 @@ public class Converter
 		}
 		return str;
 	}
+	
+	public byte[] getKeyBytes(int id, AdInfo adInfo)
+	{
+		varoffset = calcVarOffset(id);
+		byteKeys = new byte[getRequiredLengthForKeys(1, adInfo)];
+		switch (id)
+		{
+			case 1:
+				String str = (adInfo.getPublisher()).toString();
+				writeString(byteKeys, str);
+				System.out.println(byteKeys.toString());
+				break;
+			
+			case 2:
+				
+				break;
+			
+			
+			case 3:
+				
+				break;
+			
+			case 4:
+				break;
+			
+			
+			
+		}
+		return byteKeys;
+	}
+	
 	
 	
 	

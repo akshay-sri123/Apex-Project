@@ -16,6 +16,7 @@ public class Generator_v2
 	
 	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
 		AggregatorSet aggregatorSet = new AggregatorSet();
+		Converter converter = new Converter(1);
 //		for (int i = 1; i <= 7; i++) {
 //			AggregatorById aggregator = new AggregatorById(i);
 //		    aggregatorSet.addAggregator(aggregator);
@@ -31,9 +32,11 @@ public class Generator_v2
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
 			aggregatorSet.processItem(adInfo);
-			System.out.println(aggregator.getRequiredLengthForKeys(1, adInfo));
-			System.out.println(aggregator.getKeyBytes(1, adInfo));
-			System.out.println(aggregator.readString());
+//			System.out.println(aggregator.getRequiredLengthForKeys(1, adInfo));
+//			System.out.println(aggregator.getKeyBytes(1, adInfo));
+//			System.out.println(aggregator.readString());
+			System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
+			converter.getKeyBytes(1,adInfo);
 			currentTime = System.currentTimeMillis();
 		}
 

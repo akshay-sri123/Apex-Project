@@ -24,7 +24,7 @@ public class Generator
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
 			aggregator.dump();
-			System.out.println(aggregator.getRequiredLengthForKeys(5, adInfo));
+			//System.out.println(aggregator.getRequiredLengthForKeys(5, adInfo));
 		}
 	}
 }
