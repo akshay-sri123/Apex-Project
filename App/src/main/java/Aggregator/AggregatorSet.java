@@ -14,8 +14,7 @@ public class AggregatorSet
 		aggregatorList.add(aggregator);
 	}
 	
-	void processItem(AdInfo adInfo)
-	{
+	void processItem(AdInfo adInfo) throws NoSuchFieldException, IllegalAccessException {
 		for(Aggregator aggr : aggregatorList)
 		{
 			aggr.add(adInfo);
