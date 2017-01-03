@@ -24,7 +24,7 @@ public class Generator_v2
 		
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0;
-		while((currentTime - startTime) != (1))
+		while((currentTime - startTime) != 1)
 		{
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
@@ -32,6 +32,7 @@ public class Generator_v2
 //			System.out.println(aggregator.getRequiredLengthForKeys(1, adInfo));
 //			System.out.println(aggregator.getKeyBytes(1, adInfo));
 //			System.out.println(aggregator.readString());
+			
 			System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
 			converter.getKeyBytes(1,adInfo);
 			currentTime = System.currentTimeMillis();
