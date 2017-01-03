@@ -35,10 +35,10 @@ public class Generator_v2
 //			System.out.println(aggregator.readString());
 			
 			//System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
-			converter.getKeyBytes(1,adInfo);
+			converter.getKeyBytes(4,adInfo);
 			currentTime = System.currentTimeMillis();
 			timeDifference = currentTime - startTime;
-		}while(timeDifference != (1));
+		}while(timeDifference < (1000));
 
     for (Aggregator aggr : aggregatorSet.getAggregatorList()) {
 		  aggr.dump();
