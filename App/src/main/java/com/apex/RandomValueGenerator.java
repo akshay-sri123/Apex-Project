@@ -8,12 +8,12 @@ import java.util.Random;
 public class RandomValueGenerator
 {
 	Random random = new Random();
-	public double randomCost()
+	public long randomCost()
 	{
-		return (0.5 * (random.nextInt(10)+1));
+		return (2 * (random.nextInt(10)+1));
 	}
 	
-	public int randomImpressions()
+	public long randomImpressions()
 	{
 		return random.nextInt(5)+1;
 	}

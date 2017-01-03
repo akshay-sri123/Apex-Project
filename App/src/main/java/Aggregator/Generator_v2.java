@@ -13,7 +13,7 @@ public class Generator_v2
 	
 	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException {
 		AggregatorSet aggregatorSet = new AggregatorSet();
-		Converter converter = new Converter(1);
+		Converter converter = new Converter();
 //		for (int i = 1; i <= 7; i++) {
 //			AggregatorById aggregator = new AggregatorById(i);
 //		    aggregatorSet.addAggregator(aggregator);
@@ -25,20 +25,21 @@ public class Generator_v2
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0, timeDifference = 0;
 		do
-		//for(int i=0;i<1;i++)
 		{
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
-			//aggregatorSet.processItem(adInfo);
+			aggregatorSet.processItem(adInfo);
 //			System.out.println(aggregator.getRequiredLengthForKeys(1, adInfo));
 //			System.out.println(aggregator.getKeyBytes(1, adInfo));
 //			System.out.println(aggregator.readString());
 			
 			//System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
-			converter.getKeyBytes(4,adInfo);
+			//converter.getKeyBytes(4,adInfo);
+			//System.out.println(adInfo.toString());
+			//converter.getValueBytes(adInfo);
 			currentTime = System.currentTimeMillis();
 			timeDifference = currentTime - startTime;
-		}while(timeDifference < (1000));
+		}while(timeDifference < (1));
 
     for (Aggregator aggr : aggregatorSet.getAggregatorList()) {
 		  aggr.dump();

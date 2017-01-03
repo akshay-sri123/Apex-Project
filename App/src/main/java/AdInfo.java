@@ -12,40 +12,16 @@ public class AdInfo
 	public Advertiser advertiser;
 	public Location location;
 	
-	public double cost;
-	public int impressions;
+	public long cost;
+	public long impressions;
 	public boolean clicks;
 	
-	public AdInfo(Publisher publisher, Advertiser advertiser, Location location, double cost, int impressions, boolean clicks) {
+	public AdInfo(Publisher publisher, Advertiser advertiser, Location location, long cost, long impressions, boolean clicks) {
 		this.publisher = publisher;
 		this.advertiser = advertiser;
 		this.location = location;
 		this.cost = cost;
 		this.impressions = impressions;
-		this.clicks = clicks;
-	}
-	
-	public double getCost() {
-		return cost;
-	}
-	
-	public void setCost(double cost) {
-		this.cost = cost;
-	}
-	
-	public int getImpressions() {
-		return impressions;
-	}
-	
-	public void setImpressions(int impressions) {
-		this.impressions = impressions;
-	}
-	
-	public boolean getClicks() {
-		return clicks;
-	}
-	
-	public void setClicks(boolean clicks) {
 		this.clicks = clicks;
 	}
 	
@@ -71,6 +47,30 @@ public class AdInfo
 	
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+	
+	public long getCost() {
+		return cost;
+	}
+	
+	public void setCost(long cost) {
+		this.cost = cost;
+	}
+	
+	public long getImpressions() {
+		return impressions;
+	}
+	
+	public void setImpressions(long impressions) {
+		this.impressions = impressions;
+	}
+	
+	public boolean isClicks() {
+		return clicks;
+	}
+	
+	public void setClicks(boolean clicks) {
+		this.clicks = clicks;
 	}
 	
 	@Override

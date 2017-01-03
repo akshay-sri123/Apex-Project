@@ -10,11 +10,11 @@ public class AdInfo
 	public String advertiser;
 	public String location;
 	
-	public double cost;
-	public int impressions;
+	public long cost;
+	public long impressions;
 	public boolean clicks;
 	
-	public AdInfo(String publisher, String advertiser, String location, double cost, int impressions, boolean clicks) {
+	public AdInfo(String publisher, String advertiser, String location, long cost, long impressions, boolean clicks) {
 		this.publisher = publisher;
 		this.advertiser = advertiser;
 		this.location = location;
@@ -47,19 +47,19 @@ public class AdInfo
 		this.location = location;
 	}
 	
-	public double getCost() {
+	public long getCost() {
 		return cost;
 	}
 	
-	public void setCost(double cost) {
+	public void setCost(long cost) {
 		this.cost = cost;
 	}
 	
-	public int getImpressions() {
+	public long getImpressions() {
 		return impressions;
 	}
 	
-	public void setImpressions(int impressions) {
+	public void setImpressions(long impressions) {
 		this.impressions = impressions;
 	}
 	
