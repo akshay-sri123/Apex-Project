@@ -2,10 +2,7 @@ package Aggregator;
 
 import com.apex.AdInfo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Aggregator
 {
@@ -96,7 +93,8 @@ public class Aggregator
 	public void dump()
 	{
 		for (Map.Entry entry : byteMap.entrySet()) {
-			System.out.println(entry.getKey() + " " + entry.getValue());
+			System.out.println(Arrays.toString((byte[])entry.getKey()) + " " + Arrays.toString((byte[])entry.getValue()));
+			
 		}
 	}
 }
