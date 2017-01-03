@@ -24,7 +24,8 @@ public class Generator_v2
 		
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0;
-		while((currentTime - startTime) != 1)
+		//while((currentTime - startTime) != 1)
+		for(int i=0;i<1;i++)
 		{
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
