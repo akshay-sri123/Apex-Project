@@ -23,21 +23,22 @@ public class Generator_v2
 		aggregatorSet.addAggregator(aggregator);
 		
 		long startTime = System.currentTimeMillis();
-		long currentTime = 0;
-		//while((currentTime - startTime) != 1)
-		for(int i=0;i<1;i++)
+		long currentTime = 0, timeDifference = 0;
+		do
+		//for(int i=0;i<1;i++)
 		{
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
-			aggregatorSet.processItem(adInfo);
+			//aggregatorSet.processItem(adInfo);
 //			System.out.println(aggregator.getRequiredLengthForKeys(1, adInfo));
 //			System.out.println(aggregator.getKeyBytes(1, adInfo));
 //			System.out.println(aggregator.readString());
 			
-			System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
+			//System.out.println(converter.getRequiredLengthForKeys(1, adInfo));
 			converter.getKeyBytes(1,adInfo);
 			currentTime = System.currentTimeMillis();
-		}
+			timeDifference = currentTime - startTime;
+		}while(timeDifference != (1));
 
     for (Aggregator aggr : aggregatorSet.getAggregatorList()) {
 		  aggr.dump();

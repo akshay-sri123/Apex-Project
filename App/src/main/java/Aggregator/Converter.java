@@ -144,7 +144,7 @@ public class Converter
 		return str;
 	}
 	
-	public byte[] getKeyBytes(int id, AdInfo adInfo)
+	public void getKeyBytes(int id, AdInfo adInfo)
 	{
 		String str = null;
 		varoffset = offset = 0;
@@ -187,10 +187,7 @@ public class Converter
 			case 4:
 				break;
 			
-			
-			
 		}
-		return byteKeys;
 	}
 	
 	
