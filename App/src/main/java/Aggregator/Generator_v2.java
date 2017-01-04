@@ -12,6 +12,13 @@ public class Generator_v2
 	private static RandomValueGenerator randomValueGenerator = new RandomValueGenerator();
 	
 	public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, IOException {
+		long seconds;
+		if (args.length >= 1) {
+			seconds = Long.parseLong(args[0]);
+		} else {
+			seconds = 300;
+		}
+
 		AggregatorSet aggregatorSet = new AggregatorSet();
 		Converter converter = new Converter();
 //		for (int i = 1; i <= 7; i++) {
@@ -39,7 +46,7 @@ public class Generator_v2
 			//converter.getValueBytes(adInfo);
 			currentTime = System.currentTimeMillis();
 			timeDifference = currentTime - startTime;
-		}while(timeDifference < (1));
+		} while(timeDifference < (seconds * 1000));
 
     for (Aggregator aggr : aggregatorSet.getAggregatorList()) {
 		  aggr.dump();

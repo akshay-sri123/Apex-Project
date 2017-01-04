@@ -12,7 +12,7 @@ public class Aggregator
 	protected final String[] metrics;
 	private final int id;
 	private Map<List, List> aggMap = new HashMap<>();
-	private Map<byte[], byte[]> byteMap = new HashMap<>();
+	private Map<ByteArrayKeyValPair, ByteArrayKeyValPair> byteMap = new HashMap<>();
 	
 	public Aggregator(String[] keys, String[] metrics, int id) {
 		this.keys = keys;
@@ -34,15 +34,16 @@ public class Aggregator
 //    }
 		
 		byte[] keyByte = converter.getKeyBytes(id, adInfo);
-		byte[] valByte = byteMap.get(keyByte);
-		if(valByte == null)
+    byte[] valByte = converter.getValueBytes(adInfo);
+    ByteArrayKeyValPair pair = byteMap.get(new ByteArrayKeyValPair(keyByte, null));
+    if(pair == null)
 		{
-			valByte = converter.getValueBytes(adInfo);
-			byteMap.put(keyByte, valByte);
+      pair = new ByteArrayKeyValPair(keyByte, valByte);
+			byteMap.put(pair, pair);
 		}
 		else
 		{
-			converter.updateByteValues(valByte, adInfo);
+			converter.updateByteValues(pair.getVal(), adInfo);
 		}
   }
 
@@ -93,8 +94,8 @@ public class Aggregator
 	public void dump()
 	{
 		for (Map.Entry entry : byteMap.entrySet()) {
-			System.out.println(Arrays.toString((byte[])entry.getKey()) + " " + Arrays.toString((byte[])entry.getValue()));
-			
+		  System.out.println(entry.getKey().toString());
+			//System.out.println(Arrays.toString((byte[])entry.getKey()) + " " + Arrays.toString((byte[])entry.getValue()));
 		}
 	}
 }
