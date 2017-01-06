@@ -8,15 +8,17 @@ import com.apex.Publisher;
 
 public class AdInfo
 {
-	public Publisher publisher;
-	public Advertiser advertiser;
-	public Location location;
+	public String publisher;
+	public String advertiser;
+	public String location;
 	
 	public long cost;
 	public long impressions;
 	public boolean clicks;
 	
-	public AdInfo(Publisher publisher, Advertiser advertiser, Location location, long cost, long impressions, boolean clicks) {
+	
+	
+	public AdInfo(String publisher, String advertiser, String location, long cost, long impressions, boolean clicks) {
 		this.publisher = publisher;
 		this.advertiser = advertiser;
 		this.location = location;
@@ -25,27 +27,27 @@ public class AdInfo
 		this.clicks = clicks;
 	}
 	
-	public Publisher getPublisher() {
+	public String getPublisher() {
 		return publisher;
 	}
 	
-	public void setPublisher(Publisher publisher) {
+	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
 	
-	public Advertiser getAdvertiser() {
+	public String getAdvertiser() {
 		return advertiser;
 	}
 	
-	public void setAdvertiser(Advertiser advertiser) {
+	public void setAdvertiser(String advertiser) {
 		this.advertiser = advertiser;
 	}
 	
-	public Location getLocation() {
+	public String getLocation() {
 		return location;
 	}
 	
-	public void setLocation(Location location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	
@@ -75,14 +77,12 @@ public class AdInfo
 	
 	@Override
 	public String toString() {
-		return "AdInfo{" +
-				"publisher=" + publisher +
-				", advertiser=" + advertiser +
-				", location=" + location +
-				", cost=" + cost +
-				", impressions=" + impressions +
-				", clicks=" + clicks +
-				'}';
+		return publisher +
+				"," + advertiser +
+				"," + location +
+				"," + cost +
+				"," + impressions +
+				"," + clicks;
 	}
 }
 

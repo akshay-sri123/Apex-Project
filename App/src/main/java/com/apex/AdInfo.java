@@ -35,7 +35,7 @@ public class AdInfo
 		return advertiser;
 	}
 	
-	public void setAdvertiser(String advertiser) {
+		public void setAdvertiser(String advertiser) {
 		this.advertiser = advertiser;
 	}
 	
