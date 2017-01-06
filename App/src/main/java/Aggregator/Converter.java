@@ -299,11 +299,11 @@ public class Converter
 		impressions += adInfo.getImpressions();
 		//clicks += (adInfo.isClicks() ? 1 : 0);
 		
-		writeLong(byteMetrics, cost);
+		writeLong(valBytes, cost);
 		offset += 8;
-		writeLong(byteMetrics, impressions);
+		writeLong(valBytes, impressions);
 		offset +=8;
-		writeBoolean(byteMetrics, clicks);
+		writeBoolean(valBytes, clicks);
 		offset += 1;
 		//System.out.println("Cost : "+cost+" , Impressions : "+impressions+" , Clicks : "+clicks);
 	}
