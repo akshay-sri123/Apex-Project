@@ -1,5 +1,6 @@
 package com.apex;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -27,4 +28,27 @@ public class IntSerializationTests
       Assert.assertEquals("value wrote and read should be same ", val, val2);
     }
   }
+  
+  @Test
+  public void testByteSerialization()
+  {
+    Converter converter = new Converter();
+    long num = 1450890L;
+    byte[] longBytes = new byte[8];
+    converter.writeLong(longBytes,num);
+    System.out.println(Arrays.toString(longBytes));
+    long val = converter.readLong(longBytes);
+    System.out.println(val);
+    val += 50;
+    
+    converter.writeLong(longBytes, val);
+    System.out.println(Arrays.toString(longBytes));
+    
+    val = converter.readLong(longBytes);
+    System.out.println(val);
+    
+  }
 }
+
+
+
