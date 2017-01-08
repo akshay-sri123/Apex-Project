@@ -101,7 +101,7 @@ public class Converter
 		return val;
 	}
 	
-	void writeLong(byte[] bytes, long val)
+	public void writeLong(byte[] bytes, long val)
 	{
 		bytes[offset+0] = (byte)(val & 0xFFL);
 		bytes[offset+1] = (byte)((val & 0xFF00L) >> 8);
