@@ -3,9 +3,7 @@ package Aggregator;
 import com.apex.AdInfo;
 import org.apache.commons.codec.binary.Hex;
 
-/**
- * Created by akshay on 28/12/16.
- */
+
 public class Converter
 {
 	protected int offset = 0, varoffset = 0, id = 0, revoffset = 0;
@@ -129,10 +127,10 @@ public class Converter
 	public void writeString(byte[] bytes, String str)
 	{
 		writeInt(bytes, varoffset);
-		offset+=1;
+		offset+=4;
 		
 		bytes[offset]=(byte)str.length();
-		
+		offset+=1;     // changed offset
 		byte[] strBytes=str.getBytes();
 		
 		for(int i=0;i<strBytes.length;i++)
@@ -140,6 +138,7 @@ public class Converter
 			bytes[i + varoffset] = strBytes[i];
 		}
 		varoffset += strBytes.length;
+
 	}
 	
 	void writeBoolean(byte[] bytes, boolean bool)
