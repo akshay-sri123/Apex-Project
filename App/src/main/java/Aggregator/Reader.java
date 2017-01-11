@@ -8,9 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-/**
- * Created by Akshay on 1/6/2017.
- */
+
 public class Reader
 {
 	public void reader(CSVReader csvReader, AdInfo adInfo)throws IOException

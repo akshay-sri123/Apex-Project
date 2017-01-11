@@ -6,10 +6,12 @@ import java.util.*;
 
 public class Aggregator
 {
+
 	Converter converter=new Converter();
 
 	protected final String[] keys;
 	protected final String[] metrics;
+
 	private final int id;
 	private Map<List, List> aggMap = new HashMap<>();
 	private Map<ByteArrayKeyValPair, ByteArrayKeyValPair> byteMap = new HashMap<>();

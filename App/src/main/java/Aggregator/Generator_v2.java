@@ -1,6 +1,7 @@
 package Aggregator;
 
 import com.apex.*;
+import java.io.*;
 import com.opencsv.CSVReader;
 
 import java.io.FileReader;
@@ -19,7 +20,7 @@ public class Generator_v2
 		if (args.length >= 1) {
 			seconds = Long.parseLong(args[0]);
 		} else {
-			seconds = 60;
+			seconds = 5;
 		}
 
 		AggregatorSet aggregatorSet = new AggregatorSet();
@@ -29,7 +30,7 @@ public class Generator_v2
 		    aggregatorSet.addAggregator(aggregator);
 		}
 		
-		//CSVReader csvReader = new CSVReader(new FileReader("/home/akshay/Documents/InputFile.csv"), ',');
+		//CSVReader csvReader = new CSVReader(new FileReader("/home/vishal/Documents/InputFile.csv"), ',');
 		
 		long startTime = System.currentTimeMillis();
 		long currentTime = 0, timeDifference = 0;
@@ -51,12 +52,25 @@ public class Generator_v2
 //				aggregatorSet.processItem(adInfo);
 //			}
 //		}
-		
+        FileWriter filewriter=new FileWriter("/home/vishal/Documents/Inputfile.csv");
 		do
 		{
 			AdInfo adInfo = new AdInfo(randomPublisher.random().toString(), randomAdvertiser.random().toString(), randomLocation.random().toString(),
 					randomValueGenerator.randomCost(), randomValueGenerator.randomImpressions(), randomValueGenerator.randomClicks());
      		aggregatorSet.processItem(adInfo);
+
+     		filewriter.append(adInfo.advertiser);
+     		filewriter.append(',');
+            filewriter.append(adInfo.publisher);
+            filewriter.append(',');
+            filewriter.append(adInfo.location);
+            filewriter.append(',');
+            filewriter.append(Long.toString(adInfo.cost));
+            filewriter.append(',');
+            filewriter.append(Long.toString(adInfo.impressions));
+            filewriter.append(',');
+            filewriter.append(Boolean.toString(adInfo.clicks));
+            filewriter.append("\n");
 			currentTime = System.currentTimeMillis();
 			timeDifference = currentTime - startTime;
 		} while(timeDifference < (seconds * 1000));
