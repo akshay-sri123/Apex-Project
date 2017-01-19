@@ -11,13 +11,12 @@ import java.util.Arrays;
 
 public class Reader
 {
-	public void reader(CSVReader csvReader, AdInfo adInfo)throws IOException
-	{
+	public void reader(CSVReader csvReader,AggregatorSet aggregatorSet) throws IOException, NoSuchFieldException, IllegalAccessException {
 		String[] nextLine;
 		
 		while((nextLine = csvReader.readNext()) != null)
 		{
-			
+			AdInfo adInfo = new AdInfo(null, null, null, 0l, 0l, false);
 			if(nextLine != null)
 			{
 				adInfo.setPublisher(nextLine[0]);
@@ -26,6 +25,8 @@ public class Reader
 				adInfo.setCost(Long.parseLong(nextLine[3]));
 				adInfo.setImpressions((Long.parseLong(nextLine[4])));
 				adInfo.setClicks(Boolean.parseBoolean(nextLine[5]));
+
+				aggregatorSet.processItem(adInfo);
 			}
 		}
 	}

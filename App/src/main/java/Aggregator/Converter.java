@@ -1,5 +1,6 @@
 package Aggregator;
 
+import java.io.*;
 import com.apex.AdInfo;
 import org.apache.commons.codec.binary.Hex;
 
@@ -281,7 +282,22 @@ public class Converter
 		
 		return byteMetrics;
 	}
-	
+
+	public void readValuebytes(byte[] valBytes) {
+        revoffset = offset = 0;
+        long cost, impressions;
+        boolean clicks;
+
+        cost = readLong(valBytes);
+        revoffset += 8;
+
+        impressions = readLong(valBytes);
+        revoffset += 8;
+        clicks = readBoolean(valBytes);
+        revoffset += 1;
+       System.out.println("Cost : "+cost+" , Impressions : "+impressions+" , Clicks : "+clicks);
+    }
+
 	public void updateByteValues(byte[] valBytes, AdInfo adInfo)
 	{
 		revoffset = offset = 0;
@@ -296,7 +312,7 @@ public class Converter
 		
 		cost += adInfo.getCost();
 		impressions += adInfo.getImpressions();
-		//clicks += (adInfo.isClicks() ? 1 : 0);
+
 		
 		writeLong(valBytes, cost);
 		offset += 8;
@@ -304,7 +320,94 @@ public class Converter
 		offset +=8;
 		writeBoolean(valBytes, clicks);
 		offset += 1;
-		//System.out.println("Cost : "+cost+" , Impressions : "+impressions+" , Clicks : "+clicks);
+
+	}
+
+	public void readKeybytes(byte[] keyvals)
+	{
+      revoffset=0;
+        int off= 0;
+        try {
+            off = readInteger(keyvals);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        switch(off)
+        {
+            case 5:int b=keyvals[0];
+                   revoffset+=4;
+                   int len=keyvals[revoffset];
+
+                   byte[] key=new byte[len];
+                   for(int i=0;i<len;i++)
+                      key[i]=keyvals[b+i];
+                   String str=new String(key);
+                   System.out.print(str);
+
+
+                    break;
+           case 10:
+                b=keyvals[0];
+                revoffset+=4;
+                len=keyvals[revoffset];
+
+                key=new byte[len];
+                for(int i=0;i<len;i++)
+                    key[i]=keyvals[b+i];
+                str=new String(key);
+                System.out.print(str);
+                b=keyvals[revoffset+1];
+                revoffset+=5;
+                len=keyvals[revoffset];
+
+                key=new byte[len];
+                for(int i=0;i<len;i++)
+                    key[i]=keyvals[b+i];
+                str=new String(key);
+               System.out.print(","+str);
+
+
+
+                     break;
+
+            case 15:
+                b=keyvals[0];
+                revoffset+=4;
+                len=keyvals[revoffset];
+
+                key=new byte[len];
+                for(int i=0;i<len;i++)
+                    key[i]=keyvals[b+i];
+                str=new String(key);
+                System.out.print(str);
+                b=keyvals[revoffset+1];
+                revoffset+=5;
+                len=keyvals[revoffset];
+
+                 key=new byte[len];
+                for(int i=0;i<len;i++)
+                    key[i]=keyvals[b+i];
+                str=new String(key);
+                System.out.print(","+str);
+                b=keyvals[revoffset+1];
+                revoffset+=5;
+                len=keyvals[revoffset];
+
+                key=new byte[len];
+                for(int i=0;i<len;i++)
+                    key[i]=keyvals[b+i];
+                 str=new String(key);
+
+                System.out.print(","+str);
+
+
+
+        }
+
+
 	}
 	
 }

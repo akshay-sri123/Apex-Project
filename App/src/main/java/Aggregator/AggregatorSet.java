@@ -9,19 +9,19 @@ public class AggregatorSet
 {
 	List<Aggregator> aggregatorList = new ArrayList<>();
 	
-	void addAggregator(Aggregator aggregator)
+	public void addAggregator(Aggregator aggregator)
 	{
 		aggregatorList.add(aggregator);
 	}
 	
-	void processItem(AdInfo adInfo) throws NoSuchFieldException, IllegalAccessException {
+	public void processItem(AdInfo adInfo) throws NoSuchFieldException, IllegalAccessException {
 		for(Aggregator aggr : aggregatorList)
 		{
 			aggr.add(adInfo);
 		}
 	}
 
-	List<Aggregator> getAggregatorList()
+	public List<Aggregator> getAggregatorList()
 	{
 		return aggregatorList;
 	}

@@ -24,17 +24,8 @@ public class Aggregator
 	
 	public void add(AdInfo adInfo) throws NoSuchFieldException, IllegalAccessException
 	{
-//    List key = getKey(adInfo);
-//		//System.out.println(byteKeys);
-//		//System.out.println(readString());
-//		List vals = aggMap.get(key);
-//		if(vals == null) {
-//      vals = getInitialValues(adInfo);
-//			aggMap.put(key, vals);
-//		} else {
-//		  updateValues(vals, adInfo);
-//    }
-		
+
+
 		byte[] keyByte = converter.getKeyBytes(id, adInfo);
     byte[] valByte = converter.getValueBytes(adInfo);
     ByteArrayKeyValPair pair = byteMap.get(new ByteArrayKeyValPair(keyByte, null));
@@ -47,6 +38,7 @@ public class Aggregator
 		{
 			converter.updateByteValues(pair.getVal(), adInfo);
 		}
+
   }
 
   private void updateValues(List vals, AdInfo adInfo)
@@ -92,12 +84,20 @@ public class Aggregator
     }
     return key;
   }
-	
+	byte[] readKey;
+	byte[] readVal;
 	public void dump()
 	{
-		for (Map.Entry entry : byteMap.entrySet()) {
+		for (Map.Entry<ByteArrayKeyValPair, ByteArrayKeyValPair> entry : byteMap.entrySet()) {
 		  System.out.println(entry.getKey().toString());
-			//System.out.println(Arrays.toString((byte[])entry.getKey()) + " " + Arrays.toString((byte[])entry.getValue()));
+            readKey=entry.getKey().getKey();
+            readVal = entry.getKey().getVal();
+            converter.readKeybytes(readKey);
+            System.out.println("----------------------------------------");
+            converter.readValuebytes(readVal);
+
+
+
 		}
 	}
 }
